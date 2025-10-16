@@ -4,10 +4,12 @@ import {
   Column,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { DepartmentEntity } from '../../departments/entities/department.entity';
 import * as bcrypt from 'bcrypt';
+import { RoleUserEntity } from '../../roles/entities/role.user.entity';
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('increment')
@@ -54,6 +56,9 @@ export class UserEntity {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updated_at: Date;
+
+  @OneToOne(() => RoleUserEntity, (roleUser) => roleUser.user)
+  roleUser: RoleUserEntity;
 
   @BeforeUpdate()
   updateTimeStamp() {

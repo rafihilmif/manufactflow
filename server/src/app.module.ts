@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import DatabaseConn from '../database/db_connection';
 import { ConfigModule } from '@nestjs/config';
 import { DepartmentsModule } from './departments/departments.module';
+import { RolesModule } from './roles/roles.module';
+import { PermissionsModule } from './permissions/permissions.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { DepartmentsModule } from './departments/departments.module';
     TypeOrmModule.forRoot(DatabaseConn),
     UsersModule,
     DepartmentsModule,
+    RolesModule,
+    PermissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
