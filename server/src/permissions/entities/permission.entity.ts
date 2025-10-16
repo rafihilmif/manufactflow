@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { PermissionRoleEntity } from './permission.role.entity';
 
 export enum ModuleType {
   INVENTORY = 'inventory',
@@ -12,7 +13,7 @@ export enum ResourceType {
   BOM = 'bom',
 }
 
-@Entity('permission')
+@Entity('permissions')
 export class PermissionEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -39,4 +40,7 @@ export class PermissionEntity {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
+
+  @OneToMany(() => PermissionRoleEntity, (permissionRole) => permissionRole.permission)
+  permissionRoles: PermissionRoleEntity[];
 }
