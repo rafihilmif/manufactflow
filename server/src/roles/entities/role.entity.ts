@@ -15,9 +15,6 @@ export class RoleEntity {
   name: string;
 
   @Column()
-  role_parent_id: string;
-
-  @Column()
   level: number;
 
   @OneToMany(() => RoleUserEntity, (roleUser) => roleUser.role)

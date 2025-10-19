@@ -19,25 +19,25 @@ export class UserEntity {
   user_id: string;
 
   @Column()
-  employee_id: string;
+  email: string;
 
   @Column()
   password_hash: string;
 
-  @Column()
-  first_name: string;
+  @Column({ type: 'varchar', nullable: true })
+  first_name: string | null;
 
-  @Column()
-  last_name: string;
+  @Column({ type: 'varchar', nullable: true })
+  last_name: string | null;
 
-  @Column()
-  phone: string;
+  @Column({ type: 'varchar', nullable: true })
+  phone: string | null;
 
-  @Column()
-  department_id: string;
+  @Column({ type: 'varchar', nullable: true, default: null })
+  department_id: string | null;
 
-  @Column()
-  manager_id: string;
+  @Column({ type: 'varchar', nullable: true })
+  manager_id: string | null;
 
   @OneToMany(() => DepartmentEntity, (department) => department.manager)
   managed_departments: DepartmentEntity[];
@@ -48,8 +48,8 @@ export class UserEntity {
   @Column()
   hire_date: Date;
 
-  @Column({ nullable: true })
-  photo: string;
+  @Column({ type: 'varchar', nullable: true })
+  photo: string | null;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
