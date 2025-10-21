@@ -1,26 +1,64 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { DepartmentEntity } from './entities/department.entity';
+import { DataSource, Repository } from 'typeorm';
+import { generateUniqueUID, UIDType } from '../util/uid.util';
+import { paginate } from '../util/pagination.util';
 
 @Injectable()
 export class DepartmentsService {
-  create(createDepartmentDto: CreateDepartmentDto) {
-    return 'This action adds a new department';
+  constructor(
+    @InjectRepository(DepartmentEntity)
+    private departmentRepository: Repository<DepartmentEntity>,
+    @InjectDataSource()
+    private dataSource: DataSource,
+  ) {}
+
+  async create(createDepartmentDto: CreateDepartmentDto): Promise<DepartmentEntity> {
+    const checkAvailable = await this.departmentRepository.findOne({
+      where: {
+        name: createDepartmentDto.name,
+      },
+    });
+
+    if (checkAvailable) {
+      throw new BadRequestException('Department already exist');
+    }
+
+    const newDepartmentId = await generateUniqueUID(UIDType.DEPARTMENT, this.dataSource);
+    const department = await this.departmentRepository.create({
+      ...createDepartmentDto,
+      department_id: newDepartmentId,
+      is_active: true,
+    });
+
+    return await this.departmentRepository.save(department);
   }
 
-  findAll() {
-    return `This action returns all departments`;
+  async findAll(page = 1, limit = 10) {
+    const offset = (page - 1) * limit;
+
+    const [data, total] = await this.departmentRepository.findAndCount({
+      order: { name: 'ASC' },
+      skip: offset,
+      take: limit,
+    });
+
+    return paginate(data, total, offset, limit);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} department`;
-  }
+  async findById(departmentId: string): Promise<DepartmentEntity> {
+    const data = await this.departmentRepository.findOne({
+      where: {
+        department_id: departmentId,
+      },
+    });
 
-  update(id: number, updateDepartmentDto: UpdateDepartmentDto) {
-    return `This action updates a #${id} department`;
-  }
+    if (!data) {
+      throw new NotFoundException(`Department data not found`);
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} department`;
+    return data;
   }
 }

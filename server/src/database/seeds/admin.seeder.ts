@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { UserEntity } from '../../users/entities/user.entity';
 import { RoleEntity } from '../../roles/entities/role.entity';
 import { RoleUserEntity } from '../../roles/entities/role.user.entity';
-import { generateUniqueUID, UIDType } from '../../util/uid';
+import { generateUniqueUID, UIDType } from '../../util/uid.util';
 
 export class AdminSeeder {
   public async run(dataSource: DataSource): Promise<void> {
@@ -28,7 +28,6 @@ export class AdminSeeder {
 
     if (!adminRole) {
       const newRoleId = await generateUniqueUID(UIDType.ROLE, dataSource);
-      console.log(newRoleId);
 
       await roleRepository.insert({
         role_id: newRoleId,

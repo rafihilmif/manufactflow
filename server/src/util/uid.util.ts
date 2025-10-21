@@ -31,7 +31,7 @@ export function getUIDConfig(uidType: UIDType): UIDConfig {
     [UIDType.DEPARTMENT]: {
       prefix: UIDType.DEPARTMENT,
       length: 11,
-      tableName: 'departments',
+      tableName: 'departements',
       columnName: 'department_id',
     },
   };

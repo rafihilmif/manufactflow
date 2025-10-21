@@ -6,7 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { UserRefreshTokenEntity } from './entities/user.refreshtoken.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './strategies/jwt.strategy';
+import { JwtStrategy } from '../middleware/strategies/jwt.strategy';
 import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });

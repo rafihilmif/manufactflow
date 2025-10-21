@@ -1,34 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards, Query } from '@nestjs/common';
 import { DepartmentsService } from './departments.service';
 import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { JwtAuthGuard } from '../middleware/guards/jwt-auth.guard';
+import { RolesGuard } from '../middleware/guards/roles.guard';
+import { Roles } from '../decorator/roles.decorator';
 
 @Controller('departments')
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class DepartmentsController {
   constructor(private readonly departmentsService: DepartmentsService) {}
 
-  @Post()
-  create(@Body() createDepartmentDto: CreateDepartmentDto) {
+  @Post('create')
+  @Roles('admin')
+  async create(@Body() createDepartmentDto: CreateDepartmentDto) {
     return this.departmentsService.create(createDepartmentDto);
   }
 
   @Get()
-  findAll() {
-    return this.departmentsService.findAll();
+  @Roles('admin')
+  async findAll(@Query('page') page = 10, @Query('limit') limit = 10) {
+    return this.departmentsService.findAll(Number(page), Number(limit));
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.departmentsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDepartmentDto: UpdateDepartmentDto) {
-    return this.departmentsService.update(+id, updateDepartmentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.departmentsService.remove(+id);
+  @Get('detail/:department_id')
+  @Roles('admin')
+  async findById(@Param('department_id') departmentId: string) {
+    return this.departmentsService.findById(departmentId);
   }
 }

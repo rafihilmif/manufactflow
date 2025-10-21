@@ -1,12 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from '../../users/entities/user.entity';
 
-export enum DepartmentType {
-  PRODUCTION = 'production',
-  WAREHOUSE = 'warehouse',
-  FINANCE = 'finance',
-  SALES = 'sales',
-}
 
 @Entity('departements')
 export class DepartmentEntity {
@@ -16,11 +10,8 @@ export class DepartmentEntity {
   @Column()
   department_id: string;
 
-  @Column({
-    type: 'enum',
-    enum: DepartmentType,
-  })
-  department_type: DepartmentType;
+  @Column({ unique: true })
+  name: string;
 
   @Column()
   cost_center_code: string;

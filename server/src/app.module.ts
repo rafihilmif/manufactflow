@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DepartmentsModule } from './departments/departments.module';
 import { RolesModule } from './roles/roles.module';
-import { PermissionsModule } from './permissions/permissions.module';
 import { CompanyLocationsModule } from './company_locations/company_locations.module';
 
 @Module({
@@ -17,7 +16,6 @@ import { CompanyLocationsModule } from './company_locations/company_locations.mo
     UsersModule,
     DepartmentsModule,
     RolesModule,
-    PermissionsModule,
     CompanyLocationsModule,
   ],
   controllers: [AppController],
