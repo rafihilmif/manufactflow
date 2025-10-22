@@ -3,6 +3,8 @@ import {
   BeforeUpdate,
   Column,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -10,6 +12,7 @@ import {
 import { DepartmentEntity } from '../../departments/entities/department.entity';
 import * as bcrypt from 'bcrypt';
 import { RoleUserEntity } from '../../roles/entities/role.user.entity';
+import { BranchEntity } from '../../branchs/entities/branch.entity';
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('increment')
@@ -59,6 +62,10 @@ export class UserEntity {
 
   @OneToOne(() => RoleUserEntity, (roleUser) => roleUser.user)
   roleUser: RoleUserEntity;
+
+  @ManyToOne(() => BranchEntity, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'branch_id', referencedColumnName: 'branch_id' })
+  branchUser: UserEntity;
 
   @BeforeUpdate()
   updateTimeStamp() {

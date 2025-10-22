@@ -15,8 +15,8 @@ export class RoleEntity {
   @Column()
   level: number;
 
-  @OneToMany(() => RoleUserEntity, (roleUser) => roleUser.role)
-  roleUsers: RoleUserEntity[];
+  @OneToMany(() => RoleUserEntity, (userRoles) => userRoles.role)
+  userRole: RoleUserEntity[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

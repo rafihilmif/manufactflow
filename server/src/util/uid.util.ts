@@ -5,6 +5,7 @@ export enum UIDType {
   USER = 'USR',
   ROLE = 'ROL',
   DEPARTMENT = 'DPT',
+  BRANCH = 'BRH',
 }
 
 interface UIDConfig {
@@ -33,6 +34,12 @@ export function getUIDConfig(uidType: UIDType): UIDConfig {
       length: 11,
       tableName: 'departements',
       columnName: 'department_id',
+    },
+    [UIDType.BRANCH]: {
+      prefix: UIDType.BRANCH,
+      length: 11,
+      tableName: 'branchs',
+      columnName: 'branch_id',
     },
   };
   return configs[uidType];

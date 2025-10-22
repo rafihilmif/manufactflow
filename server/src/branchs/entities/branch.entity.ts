@@ -1,19 +1,20 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from '../../users/entities/user.entity';
 
-export enum CompanyLocationType {
+export enum BranchLocationType {
   HEADQUARTERS = 'headquarters',
   PLANT = 'plant',
   WAREHOUSE = 'warehouse',
   OFFICE = 'office',
 }
 
-@Entity('company_locations')
-export class CompanyLocation {
+@Entity('branchs')
+export class BranchEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ unique: true })
-  company_location_id: string;
+  branch_id: string;
 
   @Column({ unique: true })
   code: string;
@@ -23,9 +24,9 @@ export class CompanyLocation {
 
   @Column({
     type: 'enum',
-    enum: CompanyLocationType,
+    enum: BranchLocationType,
   })
-  location: CompanyLocationType;
+  type_location: BranchLocationType;
 
   @Column({ type: 'text' })
   address: string;
@@ -41,4 +42,7 @@ export class CompanyLocation {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
+
+  @OneToMany(() => UserEntity, (UserBranchs) => UserBranchs.branchUser)
+  userBranchs: UserEntity[];
 }

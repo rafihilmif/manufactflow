@@ -7,7 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DepartmentsModule } from './departments/departments.module';
 import { RolesModule } from './roles/roles.module';
-import { CompanyLocationsModule } from './company_locations/company_locations.module';
+import { BranchsModule } from './branchs/branchs.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { CompanyLocationsModule } from './company_locations/company_locations.mo
     UsersModule,
     DepartmentsModule,
     RolesModule,
-    CompanyLocationsModule,
+    BranchsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
