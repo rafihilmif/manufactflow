@@ -18,13 +18,15 @@ export class BranchsController {
   }
 
   @Get()
+  @Roles('admin', 'owner')
   findAll() {
     return this.branchsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.branchsService.findOne(+id);
+  @Get('detail/:branch_id')
+  @Roles('admin', 'owner')
+  findOne(@Param('branch_id') branchId: string) {
+    return this.branchsService.findOne(branchId);
   }
 
   @Patch(':id')

@@ -1,0 +1,198 @@
+import {
+  LayoutDashboard,
+  BarChart3,
+  Users,
+  ShoppingBag,
+  Package,
+  Factory,
+  ShoppingCart,
+  Boxes,
+  UserCog,
+  Building2,
+  ClipboardCheck,
+  TruckIcon,
+  FileText,
+  Settings,
+  Shield,
+  Warehouse,
+  MapPin,
+  PackageCheck,
+  ListChecks,
+  Receipt,
+  Badge,
+  BadgeCheck,
+} from "lucide-react";
+import { MenuItem } from "@/types/menuItem";
+
+export const menuItems: MenuItem[] = [
+  {
+    id: "dashboard",
+    icon: LayoutDashboard,
+    label: "Dashboard",
+    href: "/dashboard",
+    badge: "New",
+  },
+  {
+    id: "users",
+    icon: Users,
+    label: "Users & Roles",
+    href: "/users",
+    count: "2.4k",
+    submenu: [
+      {
+        id: "all-users",
+        label: "All Users",
+        icon: Users,
+        href: "/users",
+      },
+      {
+        id: "roles",
+        label: "Roles & Permissions",
+        icon: Shield,
+        href: "/users/roles",
+      },
+      {
+        id: "departments",
+        label: "Departments",
+        icon: Building2,
+        href: "/users/departments",
+      },
+    ],
+  },
+  {
+    id: "products",
+    icon: ShoppingBag,
+    label: "Products",
+    href: "/products",
+    count: "1.3k",
+    submenu: [
+      {
+        id: "all-products",
+        label: "All Products",
+        icon: ShoppingBag,
+        href: "/products",
+      },
+      {
+        id: "categories",
+        label: "Categories",
+        icon: Boxes,
+        href: "/products/categories",
+      },
+      {
+        id: "bom",
+        label: "Bill of Material",
+        icon: FileText,
+        href: "/products/bom",
+      },
+    ],
+  },
+  {
+    id: "inventory",
+    icon: Package,
+    label: "Inventory",
+    href: "/inventory",
+    submenu: [
+      {
+        id: "stock-levels",
+        label: "Stock Levels",
+        icon: Package,
+        href: "/inventory/stocks",
+      },
+      {
+        id: "warehouse",
+        label: "Warehouse",
+        icon: Warehouse,
+        href: "/inventory/warehouses",
+      },
+      {
+        id: "storage-location",
+        label: "Storage Location",
+        icon: MapPin,
+        href: "/inventory/locations",
+      },
+      {
+        id: "transactions",
+        label: "Transactions",
+        icon: FileText,
+        href: "/inventory/transactions",
+      },
+    ],
+  },
+  {
+    id: "procurement",
+    icon: ShoppingCart,
+    label: "Procurement",
+    href: "/procurement",
+    submenu: [
+      {
+        id: "suppliers",
+        label: "Suppliers",
+        icon: UserCog,
+        href: "/procurement/suppliers",
+      },
+      {
+        id: "requisitions",
+        label: "Purchase Requisitions",
+        icon: FileText,
+        href: "/procurement/requisitions",
+      },
+      {
+        id: "purchase-order",
+        label: "Purchase Orders",
+        icon: Receipt,
+        href: "/procurement/orders",
+      },
+    ],
+  },
+  {
+    id: "production",
+    icon: Factory,
+    label: "Production",
+    href: "/production",
+    submenu: [
+      {
+        id: "work-centers",
+        label: "Work Centers",
+        icon: Factory,
+        href: "/production/work-centers",
+      },
+      {
+        id: "production-orders",
+        label: "Production Orders",
+        icon: ClipboardCheck,
+        href: "/production/orders",
+      },
+    ],
+  },
+  {
+    id: "quality",
+    icon: BadgeCheck,
+    label: "Quality Control",
+    href: "/quality",
+    submenu: [
+      {
+        id: "inspections",
+        label: "Inspections",
+        icon: BadgeCheck,
+        href: "/quality/inspections",
+      },
+    ],
+  },
+  {
+    id: "analytics",
+    icon: BarChart3,
+    label: "Analytics",
+    href: "/analytics",
+    submenu: [
+      { id: "overview", label: "Overview", href: "/analytics/overview" },
+      { id: "reports", label: "Reports", href: "/analytics/reports" },
+      { id: "insights", label: "Insights", href: "/analytics/insights" },
+    ],
+  },
+  {
+    id: "settings",
+    icon: Settings,
+    label: "Settings",
+    href: "/settings",
+  },
+];

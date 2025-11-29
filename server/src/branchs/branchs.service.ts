@@ -1,10 +1,12 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { DataSource, Repository } from 'typeorm';
 import { BranchEntity } from './entities/branch.entity';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { generateUniqueUID, UIDType } from '../util/uid.util';
+import { paginate } from '../util/pagination.util';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class BranchsService {
@@ -44,12 +46,30 @@ export class BranchsService {
     return await this.branchRepository.save(branch);
   }
 
-  findAll() {
-    return `This action returns all branchs`;
+  async findAll(page = 1, limit = 10) {
+    const offset = (page - 1) * limit;
+
+    const [data, total] = await this.branchRepository.findAndCount({
+      order: { name: 'ASC' },
+      skip: offset,
+      take: limit,
+    });
+
+    return paginate(data, total, offset, limit);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} branch`;
+  async findOne(branchId: string): Promise<BranchEntity> {
+    const data = await this.branchRepository.findOne({
+      where: {
+        branch_id: branchId,
+      },
+    });
+
+    if (!data) {
+      throw new NotFoundException('Branch not found');
+    }
+
+    return data;
   }
 
   update(id: number, updateBranchDto: UpdateBranchDto) {
