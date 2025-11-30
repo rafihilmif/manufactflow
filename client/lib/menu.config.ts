@@ -10,16 +10,12 @@ import {
   UserCog,
   Building2,
   ClipboardCheck,
-  TruckIcon,
   FileText,
   Settings,
   Shield,
   Warehouse,
   MapPin,
-  PackageCheck,
-  ListChecks,
   Receipt,
-  Badge,
   BadgeCheck,
 } from "lucide-react";
 import { MenuItem } from "@/types/menuItem";
@@ -91,6 +87,7 @@ export const menuItems: MenuItem[] = [
     icon: Package,
     label: "Inventory",
     href: "/inventory",
+    count: "10k",
     submenu: [
       {
         id: "stock-levels",
