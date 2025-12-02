@@ -43,7 +43,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }) => {
               placeholder="Search..."
               className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border
                border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 
-               dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+               dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
             />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
               <Filter />
@@ -51,7 +51,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }) => {
           </div>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="hidden lg:flex items-center space-x-2 py-2 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all">
+          <button className="hidden lg:flex items-center space-x-2 py-2 px-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl hover:shadow-lg transition-all">
             <Plus className="w-4 h-4" />
             <p className="text-sm font-medium">New</p>
           </button>

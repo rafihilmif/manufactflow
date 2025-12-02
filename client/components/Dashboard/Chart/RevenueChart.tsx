@@ -24,7 +24,7 @@ const RevenueChart = () => {
         </div>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+            <div className="w-3 h-3 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full"></div>
             <div className="text-sm text-slate-600 dark:text-slate-400">
               <span>Revenue</span>
             </div>
@@ -85,12 +85,13 @@ const RevenueChart = () => {
             />
             <defs>
               <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset={"8%"} stopColor="#3b82f6" />
-                <stop offset={"100%"} stopColor="#8b5cf6" />
+                <stop offset="8%" stopColor="#10b981" />
+                <stop offset="100%" stopColor="#059669" />
               </linearGradient>
+
               <linearGradient id="expensesGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset={"8%"} stopColor="#94a3b8" />
-                <stop offset={"100%"} stopColor="#64748b" />
+                <stop offset="8%" stopColor="#6ee7b7" />
+                <stop offset="100%" stopColor="#34d399" />
               </linearGradient>
             </defs>
           </BarChart>

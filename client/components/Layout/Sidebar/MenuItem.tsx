@@ -33,7 +33,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       <button
         className={`w-full flex items-center justify-between p-3 rounded-xl transitiona-all duration-200 ${
           currentPage === item.id || item.active
-            ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25"
+            ? "bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg shadow-blue-500/25"
             : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50"
         }`}
         onClick={() => {
