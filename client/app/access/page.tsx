@@ -6,10 +6,8 @@ import { Eye, EyeOff, TruckElectric } from "lucide-react";
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-white">
-      {/* Left Section - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8 lg:p-12 xl:px-24">
         <div className="w-full max-w-md">
-          {/* Logo */}
           <div className="mb-8 sm:mb-10 lg:mb-12">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center shadow-lg">
@@ -21,7 +19,6 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Form Content */}
           <div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
               Welcome Back
@@ -31,7 +28,6 @@ export default function LoginPage() {
             </p>
 
             <form className="space-y-4 sm:space-y-5">
-              {/* Email Input */}
               <div>
                 <label
                   htmlFor="email"
@@ -46,8 +42,6 @@ export default function LoginPage() {
                   className="w-full px-4 py-3 sm:py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-sm sm:text-base transition-shadow"
                 />
               </div>
-
-              {/* Password Input */}
               <div>
                 <label
                   htmlFor="password"
@@ -70,8 +64,6 @@ export default function LoginPage() {
                   </button>
                 </div>
               </div>
-
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -167,8 +159,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-
-      {/* Right Section - Dashboard Preview */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-emerald-600 to-emerald-700 p-8 xl:p-16 flex-col justify-center items-center text-white overflow-hidden relative">
         <div className="max-w-2xl w-full z-10">
           <h2 className="text-3xl xl:text-4xl 2xl:text-5xl font-bold mb-4 leading-tight">
